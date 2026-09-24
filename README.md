@@ -58,6 +58,7 @@ flowchart LR
 |---|---|
 | Parsing | PyMuPDF / pdfplumber |
 | Embeddings | Sentence-Transformers (e.g. BGE / E5 family) |
+<<<<<<< HEAD
 | Vector search | NumPy cosine similarity (FAISS optional at larger scale) |
 | Keyword search | rank-bm25 |
 | Reranker | Cross-encoder from Sentence-Transformers |
@@ -66,12 +67,23 @@ flowchart LR
 | Evaluation | Custom metrics (citation accuracy, recall@k, refusal); RAGAS optional |
 | UI | Streamlit |
 | Tracking | JSON result files (W&B / MLflow optional) |
+=======
+| Vector store | FAISS or Chroma |
+| Keyword search | rank-bm25 |
+| Reranker | Cross-encoder from Sentence-Transformers |
+| LLM | Open-weights model or API (configurable) |
+| Fine-tuning (optional) | Hugging Face PEFT + TRL (QLoRA) |
+| Evaluation | RAGAS + custom metrics |
+| UI | Streamlit or Gradio |
+| Tracking | Weights & Biases or MLflow |
+>>>>>>> d1dc44677b5a41a6feb08d884c9d21ade96aa4b8
 
 ## Repository structure
 
 ```
 themis/
 ├── data/
+<<<<<<< HEAD
 │   ├── raw/                  # bns.pdf, bnss.pdf, bsa.pdf (not committed)
 │   ├── processed/            # sections.jsonl, SFT data (generated)
 │   ├── index/                # chunks + embeddings (generated)
@@ -88,6 +100,22 @@ themis/
 │   ├── metrics.py            # citation accuracy, recall@k, refusal
 │   ├── run_baseline.py       # same LLM, no RAG
 │   └── run_eval.py           # full pipeline
+=======
+│   ├── raw/              # Downloaded bare-act PDFs (not committed)
+│   ├── processed/        # Parsed sections (JSONL)
+│   └── mapping/          # IPC-BNS, CrPC-BNSS, Evidence-BSA tables
+├── src/
+│   ├── ingest/           # PDF parsing and section chunking
+│   ├── retrieval/        # BM25, dense, hybrid, reranker
+│   ├── generation/       # Prompts and answer pipeline
+│   ├── finetune/         # (optional) QLoRA / embedding fine-tuning
+│   └── app/              # Streamlit / Gradio UI
+├── eval/
+│   ├── testset.jsonl     # Expert-checked questions and answers
+│   ├── run_baseline.py   # General LLM, no RAG
+│   └── run_eval.py       # Full pipeline evaluation
+├── notebooks/
+>>>>>>> d1dc44677b5a41a6feb08d884c9d21ade96aa4b8
 ├── requirements.txt
 └── README.md
 ```
@@ -105,6 +133,7 @@ pip install -r requirements.txt
 
 ### 2. Add the data
 
+<<<<<<< HEAD
 Download the official texts of the BNS, BNSS and BSA (for example from India Code or the Ministry of Home Affairs website) and save them as `data/raw/bns.pdf`, `data/raw/bnss.pdf` and `data/raw/bsa.pdf`.
 
 Then fill `data/mapping/mapping.csv` from the official comparison tables, using this header:
@@ -114,6 +143,9 @@ old_act,old_section,new_act,new_section,change_summary
 ```
 
 `old_act` is one of `IPC`, `CrPC`, `IEA`; `new_act` is one of `BNS`, `BNSS`, `BSA`. Spot-check the rows by hand.
+=======
+Download the official texts of the BNS, BNSS and BSA (for example from India Code or the Ministry of Home Affairs website) and place the PDFs in `data/raw/`. Add the official comparison tables to `data/mapping/`.
+>>>>>>> d1dc44677b5a41a6feb08d884c9d21ade96aa4b8
 
 > Check the licence and terms of use of each source before redistributing any data.
 
@@ -123,6 +155,7 @@ old_act,old_section,new_act,new_section,change_summary
 python -m src.ingest.build_index
 ```
 
+<<<<<<< HEAD
 The parser is heuristic and prints the section count per act (BNS 358, BNSS 531, BSA 170 are expected). **Open `data/processed/sections.jsonl` and spot-check a few sections** before trusting the results.
 
 ### 4. Choose a free Hugging Face LLM
@@ -142,11 +175,15 @@ export THEMIS_LLM_MODEL=Qwen/Qwen2.5-1.5B-Instruct   # any instruct model on the
 Free-tier availability on the Inference API changes over time, so check that your chosen model is currently served.
 
 ### 5. Run the app
+=======
+### 4. Run the app
+>>>>>>> d1dc44677b5a41a6feb08d884c9d21ade96aa4b8
 
 ```bash
 streamlit run src/app/main.py
 ```
 
+<<<<<<< HEAD
 ### 6. Run the evaluation
 
 ```bash
@@ -168,6 +205,15 @@ THEMIS_ADAPTER=models/themis-lora python eval/run_eval.py
 
 The SFT data teaches answer *format* (citations and `NOT_FOUND`); facts still come from retrieval.
 
+=======
+### 5. Run the evaluation
+
+```bash
+python eval/run_baseline.py   # general LLM, no retrieval
+python eval/run_eval.py       # full RAG pipeline
+```
+
+>>>>>>> d1dc44677b5a41a6feb08d884c9d21ade96aa4b8
 ## Evaluation
 
 The test set is written and reviewed by hand, with a train/validation/test split made before any synthetic data generation to avoid leakage.
@@ -177,7 +223,11 @@ The test set is written and reviewed by hand, with a train/validation/test split
 | Citation accuracy (correct section number) | _TBD_ | _TBD_ |
 | Old-to-new section mapping accuracy | _TBD_ | _TBD_ |
 | Retrieval recall@5 | n/a | _TBD_ |
+<<<<<<< HEAD
 | Answers cite only retrieved sections | n/a | _TBD_ |
+=======
+| Faithfulness (RAGAS) | _TBD_ | _TBD_ |
+>>>>>>> d1dc44677b5a41a6feb08d884c9d21ade96aa4b8
 | Correct refusal on out-of-scope queries | _TBD_ | _TBD_ |
 
 _Results will be filled in as experiments are completed._
@@ -209,17 +259,29 @@ Issues and pull requests are welcome, especially for test-set questions, parsing
 
 ## Licence
 
+<<<<<<< HEAD
 Code is released under the MIT Licence (see `LICENSE`). Legal texts remain subject to their original terms of use.
+=======
+Code is released under the MIT Licence (see `(https://github.com/sankhasuvraghosh/themis-/blob/main/LICENSE)`). Legal texts remain subject to their original terms of use.
+>>>>>>> d1dc44677b5a41a6feb08d884c9d21ade96aa4b8
 
 ## Author
 
 **Sankha Suvra Ghosh**
 B.Tech CSE (AI & ML), Future Institute of Technology, Kolkata
 
+<<<<<<< HEAD
 - GitHub: `<your-username>`
 - LinkedIn: `<your-profile>`
+=======
+- GitHub: `<(https://github.com/sankhasuvraghosh)>`
+>>>>>>> d1dc44677b5a41a6feb08d884c9d21ade96aa4b8
 
 ## Acknowledgements
 
 - Government of India for publishing the official texts
+<<<<<<< HEAD
 - Hugging Face, Sentence-Transformers, FAISS, and RAGAS communities
+=======
+- Hugging Face, Sentence-Transformers, FAISS, and RAG communities
+>>>>>>> d1dc44677b5a41a6feb08d884c9d21ade96aa4b8
