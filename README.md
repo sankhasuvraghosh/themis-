@@ -136,7 +136,7 @@ streamlit run src/app/main.py
 python eval/run_baseline.py   # general LLM, no retrieval
 python eval/run_eval.py       # full RAG pipeline
 ```
-##DEMO
+## DEMO
 <img width="1033" height="903" alt="Screenshot 2026-09-24 174247" src="https://github.com/user-attachments/assets/ee5b49c3-6ebf-4f8f-8db0-b76b12412c83" />
 
 ## Evaluation
