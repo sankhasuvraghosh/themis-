@@ -1,4 +1,4 @@
-# NyayaLens: Citation-Grounded Assistant for India's New Criminal Codes
+# Themis: Citation-Grounded Assistant for India's New Criminal Codes
 
 A domain-specific LLM system that answers questions about the **Bharatiya Nyaya Sanhita (BNS)**, **Bharatiya Nagarik Suraksha Sanhita (BNSS)** and **Bharatiya Sakshya Adhiniyam (BSA)**, and maps old **IPC / CrPC / Evidence Act** sections to their new equivalents, with every answer tied to a cited section.
 
@@ -70,7 +70,7 @@ flowchart LR
 ## Repository structure
 
 ```
-nyayalens/
+themis/
 ├── data/
 │   ├── raw/              # Downloaded bare-act PDFs (not committed)
 │   ├── processed/        # Parsed sections (JSONL)
@@ -106,8 +106,8 @@ nyayalens/
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/<your-username>/nyayalens.git
-cd nyayalens
+git clone https://github.com/<sankhasuvraghosh>/themis.git
+cd themis
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
