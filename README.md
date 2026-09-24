@@ -174,8 +174,7 @@ Code is released under the MIT Licence (see `(https://github.com/sankhasuvraghos
 **Sankha Suvra Ghosh**
 B.Tech CSE (AI & ML), Future Institute of Technology, Kolkata
 
-- GitHub: `<your-username>`
-- LinkedIn: `<your-profile>`
+- GitHub: `<(https://github.com/sankhasuvraghosh)>`
 
 ## Acknowledgements
 
