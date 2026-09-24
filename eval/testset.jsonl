@@ -1,0 +1,5 @@
+{"id": "q001", "question": "What is the BNS section corresponding to IPC 302?", "gold_sections": ["BNS 103"], "answerable": true, "category": "mapping"}
+{"id": "q002", "question": "What is the BNS section for IPC 420, and what changed?", "gold_sections": ["BNS 318"], "answerable": true, "category": "mapping"}
+{"id": "q003", "question": "What is the punishment for snatching under the BNS?", "gold_sections": ["BNS 304"], "answerable": true, "category": "lookup"}
+{"id": "q004", "question": "Which BNSS section covers zero FIR?", "gold_sections": ["BNSS 173"], "answerable": true, "category": "lookup"}
+{"id": "q005", "question": "What is the capital of France?", "gold_sections": [], "answerable": false, "category": "out_of_scope"}

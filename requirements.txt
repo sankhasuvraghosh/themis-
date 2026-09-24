@@ -1,0 +1,16 @@
+pymupdf>=1.24
+numpy>=1.26
+rank-bm25>=0.2.2
+sentence-transformers>=3.0
+transformers>=4.46
+torch>=2.2
+accelerate>=0.33
+huggingface_hub>=0.25
+streamlit>=1.36
+tqdm>=4.66
+
+# Optional: QLoRA fine-tuning (needs an NVIDIA GPU, e.g. free Colab T4)
+# peft>=0.12
+# trl>=0.12
+# bitsandbytes>=0.43
+# datasets>=2.20
